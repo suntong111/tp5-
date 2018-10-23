@@ -1,0 +1,64 @@
+{extend name="base" /}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class=""><a href="{:url('admin/category/index')}">栏目管理</a></li>
+            <li class="layui-this">添加栏目</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form form-container" action="{:url('admin/terrace/save')}" method="post">
+
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">缩略图</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="img" value="" class="layui-input layui-input-inline" id="thumb">
+                            <input type="file" name="file" class="layui-upload-file">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">跳转功能</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="type" value="" placeholder="（选填）请输入栏目别名" class="layui-input">
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">跳转目标</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="url" value="" placeholder="（选填）请输入控制器方法 如：admin/Index/index" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">排序</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="status" value="1" required  lay-verify="required" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button class="layui-btn" lay-submit lay-filter="*">保存</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+{block name="js"}
+<script src="__JS__/ueditor/ueditor.config.js"></script>
+<script src="__JS__/ueditor/ueditor.all.min.js"></script>
+{/block}
+{block name="script"}
+<script>
+    var ue = UE.getEditor('content');
+</script>
+{/block}

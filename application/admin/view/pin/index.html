@@ -1,0 +1,53 @@
+{extend name="base" /}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">用户管理</li>
+
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+
+                <form class="layui-form layui-form-pane" action="{:url('admin/user/index')}" method="get">
+                    <div class="layui-inline">
+                        <label class="layui-form-label">关键词</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="keyword" value="" placeholder="请输入关键词" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-inline">
+                        <button class="layui-btn">搜索</button>
+                    </div>
+                </form>
+                <hr>
+
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 30px;">ID</th>
+                        <th>商品信息</th>
+                        <th>提现店铺</th>
+                        <th>审核状态</th>
+                        <th>提现状态</th>
+                        <th>申请变现金额</th>
+                        <th>变现后剩余金额</th>
+                        <th>手续费</th>
+                        <th>实际到账</th>
+                        <th>申请时间</th>
+                        <th>处理时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+                <!--分页-->
+
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

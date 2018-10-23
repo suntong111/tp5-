@@ -1,0 +1,88 @@
+{extend name="base" /}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class=""><a href="{:url('admin/user/index')}">用户管理</a></li>
+            <li class=""><a href="{:url('admin/user/add')}">添加用户</a></li>
+            <li class="layui-this">编辑用户</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <form class="layui-form form-container" action="{:url('admin/advert/update')}" method="post">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客服电话</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="phone" value="{$advert.phone}" required  lay-verify="required" placeholder="请输入用户名" class="layui-input">
+
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">客服微信</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="wechat" value="{$advert.wechat}" placeholder="（选填）如不修改则留空" class="layui-input">
+                            <span>添加加好友</span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">免费体验</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="freestyle" value="{$advert.freestyle}" placeholder="（选填）如不修改则留空" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">代理费用</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="money" value="{$advert.money}" placeholder="（选填）请输入手机" class="layui-input">
+                            <span>天</span>
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">代理保护期</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="day" value="{$advert.day}" placeholder="（选填）请输入邮箱" class="layui-input">
+                            <span>天</span>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">入驻提成</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="demoney" value="{$advert.demoney}" placeholder="（选填）请输入邮箱" class="layui-input">
+                            <span>邀请代理商返代理百分比（小数点后一位）</span>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">订单提成</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="ormoney" value="{$advert.ormoney}" placeholder="（选填）请输入邮箱" class="layui-input">
+                            <span>发展商户分的交易百分比（小数点后一位）</span>
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">完成交易时间</label>
+                        <div class="layui-input-block">
+                            <input type="text" name="finday" value="{$advert.finday}" placeholder="（选填）请输入邮箱" class="layui-input">
+                            <span>小于等于零不会完成交易</span>
+                        </div>
+                    </div>
+
+
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input type="hidden" name="id" value="{$advert.id}">
+                            <button class="layui-btn" lay-submit lay-filter="*">更新</button>
+                            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}

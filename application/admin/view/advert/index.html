@@ -1,0 +1,57 @@
+{extend name="base" /}
+{block name="body"}
+<div class="layui-body">
+    <!--tab标签-->
+    <div class="layui-tab layui-tab-brief">
+        <ul class="layui-tab-title">
+            <li class="layui-this">用户管理</li>
+            <li class=""><a href="{:url('admin/advert/add')}">添加平台管理</a></li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+
+
+                <hr>
+
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 30px;">ID</th>
+                        <th>客服联系方式</th>
+                        <th>客服微信</th>
+                        <th>免费体验</th>
+                        <th>代理费用</th>
+                        <th>代理保护期</th>
+                        <th>入住提成</th>
+                        <th>订单提成</th>
+                        <th>交易时间</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {foreach name="$advert" item="vo"}
+                    <tr>
+                        <td>{$vo.id}</td>
+                        <td> {$vo.phone}"  </td>
+                        <td> {$vo.wechat}"  </td>
+                        <td>{$vo.freestyle}/天</td>
+                        <td>{$vo.money}</td>
+                        <td>{$vo.day}/天</td>
+                        <td>{$vo.demoney}</td>
+                        <td>{$vo.ormoney}</td>
+                        <td>{$vo.finday}/天</td>
+                        <td>
+                            <a href="{:url('admin/advert/edit',['id'=>$vo['id']])}" class="layui-btn layui-btn-normal layui-btn-mini">编辑</a>
+                            <a href="{:url('admin/advert/delete',['id'=>$vo['id']])}" class="layui-btn layui-btn-danger layui-btn-mini ajax-delete">删除</a>
+                        </td>
+                    </tr>
+                    {/foreach}
+                    </tbody>
+                </table>
+                <!--分页-->
+
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
