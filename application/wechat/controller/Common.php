@@ -9,10 +9,11 @@
 
 namespace app\wechat\controller;
 
+use app\common\controller\AdminBase;
 use think\Controller;
 
 
-class Common extends Controller{
+class Common extends Controller {
 
 public function send($phone){
      $code= mt_rand(10000,99999);

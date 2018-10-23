@@ -27,4 +27,5 @@ class Login extends Validate
     'user.require'=>'请输入用户名',
     'psd.require'=>'请输入密码',
   ];
+
 }

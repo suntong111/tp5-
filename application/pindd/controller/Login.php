@@ -9,6 +9,7 @@
 namespace app\pindd\controller;
 
 
+use app\common\controller\AdminBase;
 use think\Controller;
 
 class Login extends Controller

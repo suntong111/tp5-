@@ -274,6 +274,10 @@ return [
     ],
 
    ' client_id '=> '0d1031c489a84e24a67350a5351b3d3b',
-    'client_secret'=>'99842b6f4ed6fd3404477928e01a51ca15087a4a'
+    'client_secret'=>'99842b6f4ed6fd3404477928e01a51ca15087a4a',
+
+    'error_codes' => [
+        '1000' => '请登录',
+    ],
 
 ];

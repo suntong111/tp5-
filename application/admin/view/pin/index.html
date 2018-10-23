@@ -27,21 +27,44 @@
                     <thead>
                     <tr>
                         <th style="width: 30px;">ID</th>
-                        <th>商品信息</th>
-                        <th>提现店铺</th>
-                        <th>审核状态</th>
-                        <th>提现状态</th>
-                        <th>申请变现金额</th>
-                        <th>变现后剩余金额</th>
-                        <th>手续费</th>
-                        <th>实际到账</th>
-                        <th>申请时间</th>
-                        <th>处理时间</th>
-                        <th>操作</th>
+                        <th>订单确认签收时间</th>
+                        <th>用户unionid</th>
+                        <th>审核时间</th>
+                        <th>支付时间</th>
+                        <th>最后更新时间</th>
+                        <th>订单状态描述</th>
+                        <th>订单状态</th>
+                        <th>佣金金额</th>
+                        <th>佣金比例</th>
+                        <th>订单生成时间</th>
+                        <th>实际支付金额</th>
+                        <th>订单中sku的单件价格</th>
+                        <th>购买商品的数量</th>
+                        <th>商品缩略图</th>
+                        <th>商品标题</th>
+                        <th>商品ID</th>
                     </tr>
                     </thead>
                     <tbody>
-
+                    {foreach name="$user_list" item="bk"}
+                        <tr>
+                            <td>{bk.order_receive_time}</td>
+                            <td>{bk.custom_parameters}</td>
+                            <td>{bk.order_verify_time}</td>
+                            <td>{bk.order_pay_time}</td>
+                            <td>{bk.order_modify_at}</td>
+                            <td>{bk.order_status_desc}</td>
+                            <td>{bk.order_status}</td>
+                            <td>{bk.promotion_amount}</td>
+                            <td>{bk.promotion_rate}</td>
+                            <td>{bk.order_create_time}</td>
+                            <td>{bk.order_amount}</td>
+                            <td>{bk.goods_price}</td>
+                            <td>{bk.goods_quantity}</td>
+                            <td>{bk.goods_thumbnail_url}</td>
+                            <td>{bk.goods_name}</td>
+                            <td>{bk.goods_id}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <!--分页-->

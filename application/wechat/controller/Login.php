@@ -11,6 +11,7 @@ namespace app\wechat\controller;
 
 
 use aliyunsms\SendSms;
+use app\common\controller\AdminBase;
 use app\common\model\PhoneVerify;
 use app\common\model\User;
 use think\Config;
@@ -35,7 +36,7 @@ class Login extends Controller
       $url = "https://api.weixin.qq.com/sns/jscode2session?appid=" . $APPID . "&secret=" . $AppSecret . "&js_code=" . $code . "&grant_type=authorization_code";
       $arr = $this->vget($url);// 一个使用curl实现的get方法请求
       $arr = json_decode($arr, true);
-       return json($arr);
+      return json($arr);
 
   }
     // login 接受的参数 {openid，session_key， rawData， signature，iv， encryptedData}
