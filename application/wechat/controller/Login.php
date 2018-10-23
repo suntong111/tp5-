@@ -35,53 +35,7 @@ class Login extends Controller
       $url = "https://api.weixin.qq.com/sns/jscode2session?appid=" . $APPID . "&secret=" . $AppSecret . "&js_code=" . $code . "&grant_type=authorization_code";
       $arr = $this->vget($url);// 一个使用curl实现的get方法请求
       $arr = json_decode($arr, true);
-//      $openid = $arr['openid'];
-////      return json($arr);
-//      if(empty($openid)){
-//          exit;
-//      }else{
-//          $model = Db::name('user')->where('open_id',$openid)->find();
-//          if (!$model) {
-//             $model->username = $user_nickname;
-//              $model->avatar = $user_gender;
-//              $model->img = $user_headimg;
-//              $model->save();
-//          }else{
-//              return json(['sendsure'=>'1','message'=>'登陆成功','data'=>$model]);
-//          }
-//      }
-
-
-
-      if (isset($arr['errorcode'])&&!empty($arr['errorcode'])){
-          return json(['code'=>'2','message'=>$arr['errmsg'],'result'=>null]);
-      }
-      $openid = $arr['openid'];
-      $sessin_key = $arr['session_key'];
-      $model = Db::name('user')->where('open_id',$openid)->find();
-      if ($model){
-           $data = Db::name('user')->where('open_id',$openid)->find();
-           $time = time()-$data['openid_time'];
-           $time =$time / 3600;
-           if ($time>4){
-               return json(['sendsure'=>'0','message'=>'登陆失败']);
-           }else{
-               $update = Db::name('user')->where('open_id',$openid)->update(['openid_time'=>time()]);
-               if ($update){
-                   return json(['sendsure'=>'1','message'=>'登陆成功','user_phone'=>$data['img']]);
-               }else{
-                   return json(['sendsure'=>'0','message'=>'登录失败']);
-               }
-           }
-      }else{
-          $model->open_id = $openid;
-          $model->username = $user_nickname;
-          $model->avatar = $user_gender;
-          $model->img = $user_headimg;
-          $model->save();
-//          return json(['sendsure' => '0', 'message' => '读取失败',]);
-      }
-
+       return json($arr);
 
   }
     // login 接受的参数 {openid，session_key， rawData， signature，iv， encryptedData}
