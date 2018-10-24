@@ -7,6 +7,7 @@
  */
 namespace app\common\model;
 
+use think\Db;
 use think\model;
 
 class PorderList extends model
@@ -46,5 +47,31 @@ class PorderList extends model
                 return true;
             }
         }
+    }
+
+    public static function showorder($union_id,$status,$pagenum,$pagesize){
+        $result = [];
+        $res = Db::table('porder_list')
+            ->where('custom_parameters',$union_id)
+            ->where('order_status',$status);
+        $count = $res->count();
+
+        $data =$res->page($pagenum,$pagesize)
+            ->find();
+
+        $total = $pagesize*($pagenum+1);
+
+        if ($count/$total >1){
+            $ismore = 1;
+        }else{
+            $ismore = 0;
+        }
+
+        $result[]= $data;
+        $result['count'] = $count;
+        $result['ismore'] = $ismore;
+
+        return $result;
+
     }
 }
