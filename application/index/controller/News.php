@@ -20,7 +20,6 @@ class News extends ApiController
         $mode = new \app\common\model\News();
         $model = $mode->order('id DESC')->select();
         if (!$model){
-//            return json(['code'=>403,'message'=>'未找到信息']);
             $this->showResult(1002);
         }
         $this->showResult(200,$model);

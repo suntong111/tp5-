@@ -12,6 +12,7 @@ namespace app\wechat\controller;
 
 use aliyunsms\SendSms;
 use app\common\controller\AdminBase;
+use app\common\model\Invite;
 use app\common\model\PhoneVerify;
 use app\common\model\User;
 use think\Config;
@@ -46,6 +47,7 @@ class Login extends Controller
         $rawData = json_decode($_GET['rawData'], true);
         $rawData['nickName'] = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $rawData['nickName']);
         $date = $this->decrypt_date($session_key, $_GET['encryptedData'], $_GET['iv']);
+        $from_openid = request()->get('from_openid');
         if (!empty($date['unionId'])) {
             $unionid = $date['unionId'];
         } else {
@@ -68,6 +70,12 @@ class Login extends Controller
             $cm->sex = $rawData['gender'];
             $cm->unionid = $unionid;
             $cm->save();
+            if (!empty($from_openid)){
+                $status = Invite::insertdata($from_openid,$open_id);
+                if ($status == 0){
+                    echo '同步失败';
+                }
+            }
             $id = $cm->id;
             if ($id >= 1) {
                 $userData = array('open_id' => $open_id,  'user_name' => $rawData['nickName'], 'avatar' => $rawData['avatarUrl'], 'sex' => $rawData['gender'], 'unionid' => $unionid);

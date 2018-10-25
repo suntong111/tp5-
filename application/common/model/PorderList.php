@@ -52,11 +52,13 @@ class PorderList extends model
     public static function showorder($union_id,$status,$pagenum,$pagesize){
         $result = [];
         $res = Db::table('porder_list')
-            ->where('custom_parameters',$union_id)
-            ->where('order_status',$status);
+            ->where('custom_parameters',$union_id);
+        if ($status != -10)
+            $res->where('order_status',$status);
         $count = $res->count();
 
         $data =$res->page($pagenum,$pagesize)
+            ->order('id DESC')
             ->find();
 
         $total = $pagesize*($pagenum+1);
