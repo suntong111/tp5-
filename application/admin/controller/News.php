@@ -50,9 +50,9 @@ class News extends AdminBase
 
 
     public function edit($id){
-        $mode = new \app\common\model\User();
-        $model = $mode->find($id);
-        return $this->fetch('edit',['model',$model]);
+        $mode = new \app\common\model\News();
+        $model = $mode->where('id',$id)->find();
+        return $this->fetch('edit',['model'=>$model]);
     }
 
     public function update($id){
@@ -73,7 +73,8 @@ class News extends AdminBase
     }
     public function delete($id){
         $model = new \app\common\model\News();
-        if ($model->destory($id)){
+        $mode = $model->find($id);
+        if ($mode->delete()){
             $this->success('删除成功');
         }else{
             $this->error('删除失败');
