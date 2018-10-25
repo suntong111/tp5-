@@ -60,8 +60,6 @@ protected function checkAuth(){
 }
 
     protected function getMenu(){
-
-
         $menu = [];
         $admin_id = Session::get('admin_id');
         $auth = new Auth();

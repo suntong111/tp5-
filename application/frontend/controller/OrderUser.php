@@ -22,7 +22,7 @@ class OrderUser extends ApiController
      * */
     public function showorder(){
         $union_id = request()->post('union_id','');
-        $status = request()->post('status',-1);
+        $status = request()->post('status',-10);
         $pagenum = request()->post('pagenum',0);
         $pagesize = request()->post('pagesize',10);
 
@@ -30,7 +30,7 @@ class OrderUser extends ApiController
             $this->showResult(1000);die();
         }
 
-        if ($status == -1){
+        if ($status == -10){
             $this->showResult(1001);die();
         }
 
