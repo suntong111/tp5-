@@ -17,7 +17,7 @@ class User extends Controller
    * 个人中心
    */
   public function index(){
-     $model = new \app\common\model\User();
+
 
   }
 }
