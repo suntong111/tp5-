@@ -3,7 +3,7 @@
  * Created by PhpStorm.
  * User: sunt
  * Date: 2018/10/25
- * Time: 11:24
+ * Time: 15:12
  */
 
 namespace app\jd\controller;
@@ -11,27 +11,19 @@ namespace app\jd\controller;
 
 use app\common\controller\ApiController;
 
-/**
- * 京东授权
- * Class Login
- * @package app\jd\controller
- */
 class Login extends ApiController
 {
     private $appKey = '96F8924EA36CA74F04696B6CE3CDA4D8';    //  你的Key
     private $appScret = ' 6cceb6f493e642a781efcedb86c710a3';   //  你的Secret
 
-    /**
-     * 获取接口数据
-     * @param string $apiUrl    要获取的api
-     * @param string $param_json   该api需要的参数
-     * @param string $version   版本可选为 2.0
-     * @param bool $get 是否使用get，默认为post方式
-     * @return mixed    京东返回的json格式的数据
-     */
-    public function GetKelperApiData($apiUrl='',$version='1.0',$get=false){
+
+    public function messag($type,$pageno,$page,$apiUrl='',$version='1.0',$get=false){
         $API['app_key'] = $this->appKey;
         $API['method'] = $apiUrl;
+        $API['type'] = $type;
+        $API['pageSize'] = $page;
+        $API['time'] = strtotime(date('Y-m-d H:i:s'));
+        $API['pageNo'] = $pageno;
         $API['format'] = 'json';
         $API['sign_method'] = 'md5';
         $API['timestamp'] = date('Y-m-d H:i:s',time());
@@ -84,11 +76,4 @@ class Login extends ApiController
         curl_close($ch);
         return $result;
     }
-    //  获取13位时间戳
-    private static function  getMillisecond(){
-        list($t1, $t2) = explode(' ', microtime());
-        return sprintf('%.0f',(floatval($t1)+floatval($t2))*1000);
-    }
-
-
 }
