@@ -13,21 +13,19 @@ use app\common\controller\ApiController;
 
 class Login extends ApiController
 {
-    private $appKey = '96F8924EA36CA74F04696B6CE3CDA4D8';    //  你的Key
-    private $appScret = ' 6cceb6f493e642a781efcedb86c710a3';   //  你的Secret
+    private $appKey = 'a6088c069b2f499c9c6cfcfa88aa04d5';    //  你的Key
+    private $appScret = '77f39e8f3dd147ca94c6b446519ee39a';   //  你的Secret
 
 
-    public function messag($type,$pageno,$page,$apiUrl='',$version='1.0',$get=false){
+    public function messag($apiUrl='',$param_json = array(),$version='1.0',$get=false){
         $API['app_key'] = $this->appKey;
         $API['method'] = $apiUrl;
-        $API['type'] = $type;
-        $API['pageSize'] = $page;
-        $API['time'] = strtotime(date('Y-m-d H:i:s'));
-        $API['pageNo'] = $pageno;
-        $API['format'] = 'json';
+        $API['param_json'] = json_encode($param_json);
+        $API['format']= 'JSON';
         $API['sign_method'] = 'md5';
         $API['timestamp'] = date('Y-m-d H:i:s',time());
         $API['v'] = $version;
+        $API['time'] = strtotime(date('Y-m-d H:i:s', time()));
         ksort($API);    //  排序
         $str = '';      //  拼接的字符串
         foreach ($API as $k=>$v) $str.=$k.$v;
