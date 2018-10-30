@@ -26,24 +26,18 @@ use think\Db;
  */
 class Login extends Controller
 {
-  public function get_open_id(){
+    // login 接受的参数 {openid，session_key， rawData， signature，iv， encryptedData}
+  public function login(){
       $APPID = Config::get('appid');
       $AppSecret = Config::get('appsecret');
       $code = $_GET['code'];
-      $user_nickname=$_GET["user_nickname"];
-      $user_gender=$_GET["user_gender"];
-      $user_headimg=$_GET["user_headimg"];
 
       $url = "https://api.weixin.qq.com/sns/jscode2session?appid=" . $APPID . "&secret=" . $AppSecret . "&js_code=" . $code . "&grant_type=authorization_code";
       $arr = $this->vget($url);// 一个使用curl实现的get方法请求
       $arr = json_decode($arr, true);
-      return json($arr);
 
-  }
-    // login 接受的参数 {openid，session_key， rawData， signature，iv， encryptedData}
-    public function login() {
-        $open_id = input('openid');
-        $session_key = input('session_key');
+        $open_id = $arr('openid');
+        $session_key = $arr('session_key');
         $rawData = json_decode($_GET['rawData'], true);
         $rawData['nickName'] = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $rawData['nickName']);
         $date = $this->decrypt_date($session_key, $_GET['encryptedData'], $_GET['iv']);
