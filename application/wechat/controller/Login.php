@@ -36,8 +36,8 @@ class Login extends Controller
       $arr = $this->vget($url);// 一个使用curl实现的get方法请求
       $arr = json_decode($arr, true);
 
-        $open_id = $arr('openid');
-        $session_key = $arr('session_key');
+        $open_id = $arr['openid'];
+        $session_key = $arr['session_key'];
         $rawData = json_decode($_GET['rawData'], true);
         $rawData['nickName'] = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $rawData['nickName']);
         $date = $this->decrypt_date($session_key, $_GET['encryptedData'], $_GET['iv']);
